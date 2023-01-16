@@ -69,14 +69,12 @@ pnode check(pnode *head, int data){
 void insert_node_cmd(pnode *head){
     int data = -1;
     if (scanf("%d", &data) != 1) {
-        printf("Error: Invalid input\n");
         return;
     }
     pnode node_c = check(head, data);
     if (node_c == NULL) {
         node_c = (pnode)calloc(1, sizeof(node));
         if (node_c == NULL) {
-            printf("Error: Failed to allocate memory\n");
             return;
         }
         node_c->node_num = data;
@@ -101,7 +99,6 @@ void insert_node_cmd(pnode *head){
         if (new_node == NULL) {
             new_node = (pnode)calloc(1, sizeof(node));
             if (new_node == NULL) {
-                printf("Error: Failed to allocate memory\n");
                 return;
             }
             new_node->node_num = dest;
@@ -111,7 +108,6 @@ void insert_node_cmd(pnode *head){
         }
         *insert_edge = (pedge)calloc(1, sizeof(edge));
         if (*insert_edge == NULL) {
-            printf("Error: Failed to allocate memory\n");
             return;
         }
         (*insert_edge)->weight = weight;
