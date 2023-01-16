@@ -59,6 +59,9 @@ This function allows to check if a node with specific data already exists in the
 */
 
 pnode check(pnode *head, int data){
+    if(head == NULL){
+        return NULL;
+    }
     pnode temp = *head;
     while(temp!=NULL) { 
         if(temp->node_num==data){
