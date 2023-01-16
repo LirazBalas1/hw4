@@ -9,25 +9,26 @@ The function then calls the free() function on the temporary edge pointer, which
 Once all the edges of the current node have been freed, the function creates a temporary pointer to a node, named "temp" and assigns it the value of currentnode. It then updates currentnode to the next node in the list. The function then calls the free() function on the temporary node pointer, which releases the memory allocated for that node.
 Finally, it sets head pointer to NULL to indicate that graph is deleted successfully.
 */
-
 void deleteGraph_cmd(pnode *head){
-    //head of the graph 
+    if (*head == NULL) {
+        return;
+    }
     pnode currentnode = *head;
-    while (currentnode!=NULL){ //run above all nodes and delete its edges
-       pedge currentedges = currentnode->edges;
-       while (currentedges!=NULL){
+    while (currentnode!=NULL){ 
+        pedge currentedges = currentnode->edges;
+        while (currentedges!=NULL){
             pedge temp = currentedges;
             currentedges = currentedges->next;
+            if(temp)
+                free(temp);
+        }
+        pnode temp = currentnode;
+        currentnode=currentnode->next;
+        if(temp)
             free(temp);
-       }
-       pnode temp = currentnode;
-       currentnode=currentnode->next;
-       free(temp);
     }
     *head=NULL;
 }
-
-
 
 void build_graph_cmd(pnode *head){
     deleteGraph_cmd(head);
