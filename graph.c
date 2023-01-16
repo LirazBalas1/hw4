@@ -29,13 +29,17 @@ void deleteGraph_cmd(pnode *head){
     }
     *head=NULL;
 }
-
 void build_graph_cmd(pnode *head){
+    if(head == NULL){
+        return;
+    }
     deleteGraph_cmd(head);
     int size = 0;
-    scanf("%d", &size);  //input of number of nodes
+    if (scanf("%d", &size) != 1) {
+        return;
+    }
     char c= 'C';
-    scanf("%c", &c);  //insert nodes size times
+    scanf("%c", &c);
     for (int i = 0; i < size; ++i)
     {
         scanf("%c", &c);
@@ -55,7 +59,6 @@ This function allows to check if a node with specific data already exists in the
 */
 
 pnode check(pnode *head, int data){
-    //printf("In the check data: %d \n",id);
     pnode temp = *head;
     while(temp!=NULL) { 
         if(temp->node_num==data){
